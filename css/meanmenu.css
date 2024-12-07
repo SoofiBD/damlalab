@@ -1,0 +1,121 @@
+.mean-container {
+    width: 100%;
+    position: relative;
+    margin-top: 15px;
+    z-index: 999;
+}
+
+.mean-container .mean-bar {
+    background: #000; 
+    min-height: 50px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.mean-container a.meanmenu-reveal {
+    color: #fff; 
+    font-size: 24px;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    position: relative;
+}
+
+.mean-container a.meanmenu-reveal span {
+    background: #fff;
+    height: 3px;
+    width: 25px;
+    display: block;
+    margin: 5px auto;
+    border-radius: 2px;
+}
+
+.mean-container .mean-nav {
+    background: #f9f9f9;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mean-container .mean-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mean-container .mean-nav ul li {
+    position: relative;
+    width: 100%;
+}
+
+/* Menü Öğeleri */
+.mean-container .mean-nav ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+    transition: all 0.3s ease;
+}
+
+.mean-container .mean-nav ul li a:hover {
+    background: #38c8a8; 
+    color: #fff; 
+}
+
+/* Alt Menü Öğeleri */
+.mean-container .mean-nav ul li ul {
+    display: none;
+    background: #eaeaea; 
+    margin-left: 20px;
+    border-left: 4px solid #38c8a8; 
+}
+
+.mean-container .mean-nav ul li:hover ul {
+    display: block; 
+}
+
+.mean-container .mean-nav ul li ul li a {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd;
+}
+
+.mean-container .mean-nav ul li a.mean-expand {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #333;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.mean-container .mean-nav ul li a.mean-expand:hover {
+    background: rgba(56, 200, 168, 0.8);
+    color: #fff; 
+}
+
+.mean-container .mean-nav ul li a.mean-expand:hover,
+.mean-container .mean-nav ul li a.mean-expand:focus {
+    background: #0f69c6;
+    color: #fff;
+}
+
+.mean-container .mean-remove {
+    display: none !important;
+}
