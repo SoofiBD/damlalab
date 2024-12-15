@@ -26,8 +26,12 @@ body {
      font-family: 'Lato', sans-serif;
  }
  
+ .navbar-nav{
+     margin-left: auto;
+ }
 .navbar-nav .nav-link {
-     margin-right: 15px; /* Space between buttons */
-     font-size: 1.2rem; /* Increase font size */
+     margin-right: 15px; 
+     font-size: 1.2rem; 
+     
 }
 
