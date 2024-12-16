@@ -1,0 +1,40 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- üyeler kısmı -->
+<div id="members" class="row" style="background-color: #f0f0f0; padding: 20px; border-radius: 8px;">
+    <div class="col-12">
+       <h3 class="awesome withi_color" style="color: black; text-align: center;">Group Members</h3>
+    </div>
+    <div class="col-md-6">
+       <div class="our_text_box">
+          <h4 style="color: black; text-align: center;">Group Leaders</h4>
+          <ul style="list-style-type: none; padding-left: 0; text-align: center; margin-top: 20px;">
+             <li style="color: #555; margin-bottom: 10px;">Dr. Öğr. Üyesi Hale Sert</li>
+             <li style="color: #555;">Dr. Öğr. Üyesi Çağlar Zorbilmez</li>
+          </ul>
+       </div>
+    </div>
+    <div class="col-md-6">
+       <div class="our_text_box">
+          <h4 style="color: black; text-align: center;">Graduate Students</h4>
+          <ul style="list-style-type: none; padding-left: 0; text-align: center; margin-top: 20px;">
+             <li style="color: #555; margin-bottom: 10px;">Osman Bayraktar</li>
+             <li style="color: #555; margin-bottom: 10px;">Şafak Yasun</li>
+             <li style="color: #555;">Yener Yasun</li>
+          </ul>
+       </div>
+    </div>
+    <div class="col-12" style="margin-top: 30px;">
+       <div class="our_text_box">
+          <h4 style="color: black; text-align: center;">Previous Members</h4>
+          <ul style="list-style-type: none; padding-left: 0; text-align: center; margin-top: 20px;">
+             <li style="color: #555;">Semina Kuş (M.Sc. Student)</li>
+          </ul>
+       </div>
+    </div>
+ </div>
+
+ {% endblock %}

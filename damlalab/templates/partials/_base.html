@@ -32,7 +32,7 @@
                                 <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#positions">Open Positions</a>
+                                <a class="nav-link" href="{% url 'positions' %}">Open Positions</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="researchDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -40,7 +40,7 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="researchDropdown">
                                     <a class="dropdown-item" href="{% url 'research' %}">Research Topics</a>
-                                    <a class="dropdown-item" href="#members">Research Group</a>
+                                    <a class="dropdown-item" href="{% url 'research_group' %}">Research Group</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -48,12 +48,12 @@
                                     Work
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="workDropdown">
-                                    <a class="dropdown-item" href="#theses">Theses</a>
-                                    <a class="dropdown-item" href="#projects">Projects</a>
+                                    <a class="dropdown-item" href="{% url 'thesis' %}">Theses</a>
+                                    <a class="dropdown-item" href="{% url 'projects' %}">Projects</a>
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#positions">Contact</a>
+                                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                             </li>
                         </ul>
                     </div>
