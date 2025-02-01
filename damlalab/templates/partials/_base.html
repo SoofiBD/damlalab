@@ -4,38 +4,28 @@
 <head>
   <meta charset="UTF-8">
   <title>DamlaLab</title>
-  <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Optional: Smooth transition for mobile menu */
     .mobile-transition {
       transition: all 0.3s ease-in-out;
     }
   </style>
 </head>
 <body class="bg-gray-100 flex flex-col min-h-screen">
-  <!-- Navbar Start -->
-  <!-- Fixed Navbar -->
   <nav class="bg-gray-800 fixed top-0 left-0 right-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Flex container for logo and nav links -->
       <div class="flex items-center justify-between h-16">
-        <!-- Logo on Left -->
         <div class="flex-shrink-0">
           <a href="#">
-            <!-- Replace the src attribute with your logo path -->
             <img class="h-8 w-auto" src="{% static 'images/logo.png' %}" alt="Logo">
           </a>
         </div>
-        <!-- Desktop Navigation on Right -->
         <div class="hidden md:block">
           <div class="ml-10 flex items-center space-x-4">
-            <!-- Home -->
             <a href="{% url 'home' %}"
                class="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700">
               Home
             </a>
-            <!-- Research Dropdown -->
             <div class="relative group">
               <button class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
                 Research
@@ -45,7 +35,6 @@
                         d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              <!-- Dropdown menu -->
               <div class="absolute right-0 top-full w-48 bg-gray-800 rounded-md shadow-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-300 z-10">
                 <a href="{% url 'research' %}"
                    class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">
@@ -57,7 +46,6 @@
                 </a>
               </div>
             </div>
-            <!-- Worka Dropdown -->
             <div class="relative group">
               <button class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
                 Works
@@ -67,7 +55,6 @@
                         d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              <!-- Dropdown menu -->
               <div class="absolute right-0 top-full w-48 bg-gray-800 rounded-md shadow-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-300 z-10">
                 <a href="{% url 'projects' %}"
                    class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">
@@ -79,29 +66,24 @@
                 </a>
               </div>
             </div>
-            <!-- New Open Position Link -->
             <a href="{% url 'positions' %}" 
                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
               Open Position
             </a>
-            <!-- Contacts -->
             <a href="{% url 'contact' %}"
                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
               Contacts
             </a>
           </div>
         </div>
-        <!-- Mobile Menu Button (visible on small screens) -->
         <div class="md:hidden">
           <button onclick="toggleMobileMenu()" type="button" class="bg-gray-900 text-gray-400 hover:text-white hover:bg-gray-700 inline-flex items-center justify-center p-2 rounded-md focus:outline-none">
             <span class="sr-only">Open main menu</span>
-            <!-- Menu open icon -->
             <svg id="mobile-menu-open" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
                  viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M4 6h16M4 12h16M4 18h16" />
             </svg>
-            <!-- Menu close icon -->
             <svg id="mobile-menu-close" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
                  viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -112,15 +94,12 @@
       </div>
     </div>
 
-    <!-- Mobile Navigation Menu (hidden by default) -->
-    <!-- Positioned right below the fixed navbar -->
     <div class="md:hidden hidden absolute top-16 inset-x-0 z-40 mobile-transition" id="mobile-menu">
       <div class="px-2 pt-2 pb-3 space-y-1 bg-gray-800">
         <a href="{% url 'home' %}"
            class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">
           Home
         </a>
-        <!-- Research Dropdown (Mobile) -->
         <button onclick="toggleMobileDropdown('mobile-research')"
                 class="w-full text-left text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
           Research
@@ -135,7 +114,6 @@
             Research Group Members
           </a>
         </div>
-        <!-- Worka Dropdown (Mobile) -->
         <button onclick="toggleMobileDropdown('mobile-worka')"
                 class="w-full text-left text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
           Works
@@ -150,12 +128,10 @@
             Theses
           </a>
         </div>
-        <!-- New Open Position Link (Mobile) -->
         <a href="{% url 'positions' %}" 
            class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
           Open Position
         </a>
-        <!-- Contacts (Mobile) -->
         <a href="{% url 'contact' %}"
            class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
           Contacts
@@ -163,16 +139,12 @@
       </div>
     </div>
   </nav>
-  <!-- Navbar End -->
 
-  <!-- Main Content Block -->
-  <!-- Added padding-top to ensure content doesn't hide behind the fixed navbar -->
   <main class="flex-grow pt-20">
     {% block content %}
     {% endblock %}
   </main>
 
-  <!-- Footer Start -->
   <footer class="bg-gray-800 text-gray-300 py-4">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center">
@@ -186,9 +158,7 @@
       </div>
     </div>
   </footer>
-  <!-- Footer End -->
 
-  <!-- JavaScript for toggling mobile menus -->
   <script>
     function toggleMobileMenu() {
       const mobileMenu = document.getElementById('mobile-menu');
