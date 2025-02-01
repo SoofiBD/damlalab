@@ -1,5 +1,32 @@
 from django.db import models
 
+class Coordinator(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(blank=True)
+    affiliation = models.CharField(max_length=200, blank=True)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+class Researcher(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(blank=True)
+    affiliation = models.CharField(max_length=200, blank=True)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+class Scholar(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(blank=True)
+    affiliation = models.CharField(max_length=200, blank=True)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+    
 class research_topic(models.Model):
     topic = models.CharField(max_length=100)
     description = models.TextField()
@@ -38,9 +65,9 @@ class Project(models.Model):
     )
     start_date = models.DateField()
     end_date = models.DateField()
-    researchers = models.ManyToManyField(member, related_name='research_projects', blank=True)
-    coordinators = models.ManyToManyField(member, related_name='coordinated_projects', blank=True)
-    scholars = models.ManyToManyField(member, related_name='scholar_projects', blank=True)
+    researchers = models.ManyToManyField(Researcher, related_name='research_projects', blank=True)
+    coordinators = models.ManyToManyField(Coordinator, related_name='coordinated_projects', blank=True)
+    scholars = models.ManyToManyField(Scholar, related_name='scholar_projects', blank=True)
     description = models.TextField()
     url = models.URLField(blank=True)
     image = models.ImageField(upload_to='images/', blank=True)
@@ -48,6 +75,7 @@ class Project(models.Model):
     
     def __str__(self):
         return self.title
+
 
 class Thesis(models.Model):
     THESIS_STATUS_CHOICES = (

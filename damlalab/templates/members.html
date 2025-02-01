@@ -1,71 +1,90 @@
-{% extends 'partials/_base.html' %}
-{% load static %}
-
-{% block content %}
+{% extends 'partials/_base.html' %} {% load static %} {% block content %}
 <!-- Hero Section -->
 <header class="bg-gradient-to-r from-white-600 to-white-500 text-black py-16">
   <div class="max-w-4xl mx-auto px-4 text-center">
     <h1 class="text-5xl font-bold mb-4">Research Group Members</h1>
-    <p class="text-xl">Meet the dedicated team driving innovation at DAMLA Lab</p>
+    <p class="text-xl">
+      Meet the dedicated team driving innovation at DAMLA Lab
+    </p>
   </div>
 </header>
 
-<!-- Group Members Section -->
 <section class="py-12 bg-gray-50">
   <div class="max-w-6xl mx-auto px-4">
-
-    <!-- Group Leaders -->
     <div class="mb-12">
       <h2 class="text-3xl font-bold text-gray-800 mb-6">Group Leaders</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Leader Card 1 -->
-        <div class="bg-white shadow-xl rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300">
-          <h3 class="text-2xl font-semibold text-gray-800">Dr. Öğr. Üyesi Hale Sert</h3>
-          <p class="text-gray-600 mt-2">Group Leader</p>
+        {% for leader in group_leaders %}
+        <div
+          class="bg-white shadow-xl rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300"
+        >
+          <h3 class="text-2xl font-semibold text-gray-800">
+            {{ leader.name }}
+          </h3>
+          <p class="text-gray-600 mt-2">{{ leader.get_title_display }}</p>
+          {% if leader.image %}
+          <img
+            src="{{ leader.image.url }}"
+            alt="{{ leader.name }}"
+            class="mt-4 w-full h-auto rounded"
+          />
+          {% endif %}
         </div>
-        <!-- Leader Card 2 -->
-        <div class="bg-white shadow-xl rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300">
-          <h3 class="text-2xl font-semibold text-gray-800">Dr. Öğr. Üyesi Çağlar Zorbilmez</h3>
-          <p class="text-gray-600 mt-2">Group Leader</p>
-        </div>
+        {% empty %}
+        <p class="text-center text-gray-600">No group leaders available.</p>
+        {% endfor %}
       </div>
     </div>
 
-    <!-- Graduate Students -->
     <div class="mb-12">
       <h2 class="text-3xl font-bold text-gray-800 mb-6">Graduate Students</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Student Card 1 -->
-        <div class="bg-white shadow-xl rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300">
-          <h3 class="text-2xl font-semibold text-gray-800">Osman Bayraktar</h3>
-          <p class="text-gray-600 mt-2">Graduate Student</p>
+        {% for student in graduate_students %}
+        <div
+          class="bg-white shadow-xl rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300"
+        >
+          <h3 class="text-2xl font-semibold text-gray-800">
+            {{ student.name }}
+          </h3>
+          <p class="text-gray-600 mt-2">{{ student.get_title_display }}</p>
+          {% if student.image %}
+          <img
+            src="{{ student.image.url }}"
+            alt="{{ student.name }}"
+            class="mt-4 w-full h-auto rounded"
+          />
+          {% endif %}
         </div>
-        <!-- Student Card 2 -->
-        <div class="bg-white shadow-xl rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300">
-          <h3 class="text-2xl font-semibold text-gray-800">Şafak Yasun</h3>
-          <p class="text-gray-600 mt-2">Graduate Student</p>
-        </div>
-        <!-- Student Card 3 -->
-        <div class="bg-white shadow-xl rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300">
-          <h3 class="text-2xl font-semibold text-gray-800">Yener Yasun</h3>
-          <p class="text-gray-600 mt-2">Graduate Student</p>
-        </div>
+        {% empty %}
+        <p class="text-center text-gray-600">No graduate students available.</p>
+        {% endfor %}
       </div>
     </div>
 
-    <!-- Previous Members -->
     <div>
       <h2 class="text-3xl font-bold text-gray-800 mb-6">Previous Members</h2>
-      <div>
-        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Graduate Students</h3>
-        <!-- Previous Member Card -->
-        <div class="bg-white shadow-xl rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300 max-w-md">
-          <h4 class="text-xl font-semibold text-gray-800">Semina Kuş</h4>
-          <p class="text-gray-600 mt-2">(M.Sc. Student)</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {% for previous in previous_members %}
+        <div
+          class="bg-white shadow-xl rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300"
+        >
+          <h3 class="text-2xl font-semibold text-gray-800">
+            {{ previous.name }}
+          </h3>
+          <p class="text-gray-600 mt-2">{{ previous.get_title_display }}</p>
+          {% if previous.image %}
+          <img
+            src="{{ previous.image.url }}"
+            alt="{{ previous.name }}"
+            class="mt-4 w-full h-auto rounded"
+          />
+          {% endif %}
         </div>
+        {% empty %}
+        <p class="text-center text-gray-600">No previous members available.</p>
+        {% endfor %}
       </div>
     </div>
-
   </div>
 </section>
 {% endblock %}

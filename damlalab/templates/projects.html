@@ -17,59 +17,66 @@
   <div class="max-w-6xl mx-auto px-4">
     <h2 class="text-3xl font-bold text-gray-800 mb-8">Research Projects</h2>
     <div class="space-y-8">
-      <!-- TUBİTAK Project Card -->
+      {% for project in research_projects %}
       <div class="bg-white shadow-xl rounded-lg p-6">
-        <h3 class="text-2xl font-bold text-gray-800 mb-2">
-          TUBİTAK 2232 – A: International Fellowship for Outstanding Researchers
-        </h3>
+        <!-- Project Title -->
+        <h3 class="text-2xl font-bold text-gray-800 mb-2">{{ project.title }}</h3>
+        <!-- Duration -->
         <p class="text-gray-600 mb-4">
-          Duration: 01.10.2022 – 01.01.2025
+          Duration: {{ project.start_date }} – {{ project.end_date }}
         </p>
+        <!-- Detailed Title / Description -->
+        {% if project.description %}
         <div class="mb-4">
           <p class="text-lg font-semibold text-gray-800">Title:</p>
-          <p class="text-gray-700">
-            Development of a Deep Learning Based Automated Software Tool for Diagnosis of Frontal X-ray Lung Images
-          </p>
+          <p class="text-gray-700">{{ project.description }}</p>
         </div>
+        {% endif %}
+        <!-- Coordinator(s) -->
         <div class="mb-4">
           <p class="text-lg font-semibold text-gray-800">Coordinator:</p>
-          <p class="text-gray-700">Dr. Öğr. Üyesi Hale Sert</p>
+          <p class="text-gray-700">
+            {% for coordinator in project.coordinators.all %}
+              {{ coordinator.name }}{% if not forloop.last %}, {% endif %}
+            {% empty %}
+              N/A
+            {% endfor %}
+          </p>
         </div>
+        <!-- Researcher(s) -->
         <div class="mb-4">
           <p class="text-lg font-semibold text-gray-800">Researchers:</p>
           <p class="text-gray-700">
-            Prof. Dr. Suat Özkorucuklu, Prof. Dr. Bora Işıldak, Prof. Dr. Atadan Tunacı, Prof. Dr. Mustafa Erelel, Dr. Öğr. Üyesi Güray Gürkan, Öğr. Gör. Dr. Doğu Vurallı Bakkaloğlu
+            {% for researcher in project.researchers.all %}
+              {{ researcher.name }}{% if not forloop.last %}, {% endif %}
+            {% empty %}
+              N/A
+            {% endfor %}
           </p>
         </div>
+        <!-- Scholar(s) -->
         <div>
           <p class="text-lg font-semibold text-gray-800">Scholars:</p>
           <ul class="list-disc list-inside text-gray-700">
-            <li>Osman Bayraktar: 11/09/2023 - …</li>
-            <li>Dr. Başak Ekinci: 06/12/2022 - 23/07/2024</li>
-            <li>Şafak Yasun: 01/10/2022 - 01/03/2024</li>
+            {% for scholar in project.scholars.all %}
+              <li>{{ scholar.name }}</li>
+            {% empty %}
+              <li>N/A</li>
+            {% endfor %}
           </ul>
         </div>
-      </div>
-
-      <!-- TENMAK Project Card -->
-      <div class="bg-white shadow-xl rounded-lg p-6">
-        <h3 class="text-2xl font-bold text-gray-800 mb-2">
-          TENMAK: CMS Dedektöründe Kuantum Renk Dinamiği Üzerine Fizik Analizleri, Hassas Proton Spektrometresi (PPS), Hadronik Kalorimetre (HCAL) ve Yüksel Çözünürlüklü Kalorimetre (HGCAL) Alt Dedektörlerinde Güncelleme/AR-GE Çalışmaları
-        </h3>
-        <p class="text-gray-600 mb-4">
-          Duration: 01.01.2025 - 01.01.2028
-        </p>
-        <div class="mb-4">
-          <p class="text-lg font-semibold text-gray-800">Coordinator:</p>
-          <p class="text-gray-700">Prof. Dr. Suat Özkorucuklu</p>
+        <!-- "Learn More" Button if URL provided -->
+        {% if project.url %}
+        <div class="mt-4">
+          <a href="{{ project.url }}" target="_blank" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-200">
+            Learn More
+          </a>
         </div>
-        <div>
-          <p class="text-lg font-semibold text-gray-800">Researchers:</p>
-          <p class="text-gray-700">
-            Dr. Öğr. Üyesi Çağlar Zorbilmez, Dr. Öğretim Üyesi Hale Sert, Osman Bayraktar et. al.
-          </p>
-        </div>
+        {% endif %}
       </div>
+      {% empty %}
+      <p class="text-center text-gray-600">No research projects available at this time.</p>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -79,44 +86,37 @@
   <div class="max-w-6xl mx-auto px-4">
     <h2 class="text-3xl font-bold text-gray-800 mb-8">Student Projects</h2>
     <div class="space-y-8">
-      <!-- Student Project Card 1 -->
+      {% for project in student_projects %}
       <div class="bg-gray-50 shadow-xl rounded-lg p-6">
-        <h3 class="text-2xl font-bold text-gray-800 mb-2">
-          TUBITAK 2209 A: Research Project Support Programme for Undergraduate Students
-        </h3>
-        <div class="mb-4">
-          <p class="text-lg font-semibold text-gray-800">Student:</p>
-          <p class="text-gray-700">Ayşe Balkan</p>
-        </div>
-        <div class="mb-4">
-          <p class="text-lg font-semibold text-gray-800">Title:</p>
-          <p class="text-gray-700">
-            Labelling the Higgs Boson Production Mechanisms in Certain Decay Process by using Deep Learning Method
-          </p>
-        </div>
-        <div>
-          <p class="text-lg font-semibold text-gray-800">Duration:</p>
-          <p class="text-gray-700">16/11/2022 - 17/11/2024</p>
-        </div>
-      </div>
-
-      <!-- Student Project Card 2 -->
-      <div class="bg-gray-50 shadow-xl rounded-lg p-6">
+        <!-- Project Title -->
+        <h3 class="text-2xl font-bold text-gray-800 mb-2">{{ project.title }}</h3>
+        <!-- Students (assuming student projects use the scholars relationship) -->
         <div class="mb-4">
           <p class="text-lg font-semibold text-gray-800">Students:</p>
-          <p class="text-gray-700">Emirhan Akkuş, Yağız Arda</p>
-        </div>
-        <div class="mb-4">
-          <p class="text-lg font-semibold text-gray-800">Title:</p>
           <p class="text-gray-700">
-            Derin öğrenme metodu ile jet çeşitlerinin ayrımı için bir algoritma geliştirmek
+            {% for student in project.scholars.all %}
+              {{ student.name }}{% if not forloop.last %}, {% endif %}
+            {% empty %}
+              N/A
+            {% endfor %}
           </p>
         </div>
+        <!-- Detailed Title / Description -->
+        {% if project.description %}
+        <div class="mb-4">
+          <p class="text-lg font-semibold text-gray-800">Title:</p>
+          <p class="text-gray-700">{{ project.description }}</p>
+        </div>
+        {% endif %}
+        <!-- Duration -->
         <div>
           <p class="text-lg font-semibold text-gray-800">Duration:</p>
-          <p class="text-gray-700">22/03/2024 – 22/03/2025</p>
+          <p class="text-gray-700">{{ project.start_date }} – {{ project.end_date }}</p>
         </div>
       </div>
+      {% empty %}
+      <p class="text-center text-gray-600">No student projects available at this time.</p>
+      {% endfor %}
     </div>
   </div>
 </section>

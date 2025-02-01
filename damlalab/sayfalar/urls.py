@@ -1,5 +1,3 @@
-# sayfalar/urls.py
-
 from django.urls import path
 from . import views
 
@@ -11,5 +9,4 @@ urlpatterns = [
     path('positions/', views.positions, name='positions'),
     path('theses/', views.theses, name='theses'),
     path('contact/', views.contact, name='contact'),
-
 ]

@@ -1,6 +1,24 @@
 from django.contrib import admin
-from .models import research_topic, member, Project, Thesis
+from .models import research_topic, member, Project, Thesis , Researcher , Scholar, Coordinator
 
+@admin.register(Scholar)
+class ScholarAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'affiliation', 'date')
+    search_fields = ('name', 'affiliation')
+    ordering = ('-date',)
+
+@admin.register(Coordinator)
+class CoordinatorAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'affiliation', 'date')
+    search_fields = ('name', 'affiliation')
+    ordering = ('-date',)
+
+@admin.register(Researcher)
+class ResearcherAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'affiliation', 'date')
+    search_fields = ('name', 'affiliation')
+    ordering = ('-date',)
+    
 @admin.register(research_topic)
 class ResearchTopicAdmin(admin.ModelAdmin):
     list_display = ('topic', 'date')
