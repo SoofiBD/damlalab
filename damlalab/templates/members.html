@@ -1,0 +1,71 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="bg-gradient-to-r from-white-600 to-white-500 text-black py-16">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h1 class="text-5xl font-bold mb-4">Research Group Members</h1>
+    <p class="text-xl">Meet the dedicated team driving innovation at DAMLA Lab</p>
+  </div>
+</header>
+
+<!-- Group Members Section -->
+<section class="py-12 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4">
+
+    <!-- Group Leaders -->
+    <div class="mb-12">
+      <h2 class="text-3xl font-bold text-gray-800 mb-6">Group Leaders</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Leader Card 1 -->
+        <div class="bg-white shadow-xl rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300">
+          <h3 class="text-2xl font-semibold text-gray-800">Dr. Öğr. Üyesi Hale Sert</h3>
+          <p class="text-gray-600 mt-2">Group Leader</p>
+        </div>
+        <!-- Leader Card 2 -->
+        <div class="bg-white shadow-xl rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300">
+          <h3 class="text-2xl font-semibold text-gray-800">Dr. Öğr. Üyesi Çağlar Zorbilmez</h3>
+          <p class="text-gray-600 mt-2">Group Leader</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Graduate Students -->
+    <div class="mb-12">
+      <h2 class="text-3xl font-bold text-gray-800 mb-6">Graduate Students</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Student Card 1 -->
+        <div class="bg-white shadow-xl rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300">
+          <h3 class="text-2xl font-semibold text-gray-800">Osman Bayraktar</h3>
+          <p class="text-gray-600 mt-2">Graduate Student</p>
+        </div>
+        <!-- Student Card 2 -->
+        <div class="bg-white shadow-xl rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300">
+          <h3 class="text-2xl font-semibold text-gray-800">Şafak Yasun</h3>
+          <p class="text-gray-600 mt-2">Graduate Student</p>
+        </div>
+        <!-- Student Card 3 -->
+        <div class="bg-white shadow-xl rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300">
+          <h3 class="text-2xl font-semibold text-gray-800">Yener Yasun</h3>
+          <p class="text-gray-600 mt-2">Graduate Student</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Previous Members -->
+    <div>
+      <h2 class="text-3xl font-bold text-gray-800 mb-6">Previous Members</h2>
+      <div>
+        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Graduate Students</h3>
+        <!-- Previous Member Card -->
+        <div class="bg-white shadow-xl rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300 max-w-md">
+          <h4 class="text-xl font-semibold text-gray-800">Semina Kuş</h4>
+          <p class="text-gray-600 mt-2">(M.Sc. Student)</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

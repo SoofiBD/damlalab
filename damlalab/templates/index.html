@@ -1,0 +1,83 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="py-12 bg-gradient-to-r from-blue-50 to-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <!-- Introduction Card -->
+      <div class="bg-white shadow-2xl rounded-lg overflow-hidden">
+        <div class="p-8">
+          <h2 class="text-4xl font-bold text-gray-800 text-center mb-4">
+            DAMLA Lab
+          </h2>
+          <p class="text-center text-lg text-gray-600 mb-6">
+            <em>(Data Analysis and Machine Learning Application Research Laboratory)</em>
+          </p>
+          <p class="text-gray-700 leading-relaxed text-justify mb-6">
+            DAMLA Lab, part of the Faculty of Physics at Istanbul University, is dedicated to advancing research in data analysis and machine learning. We harness cutting-edge techniques in statistical analysis, deep learning, and artificial intelligence to transform complex data into actionable insights.
+          </p>
+          <p class="text-center">
+            <a href="https://fizik-fen.istanbul.edu.tr/tr/content/arastirma/veri-analizi-ve-makin-ogrenmesi-uygulamalari-laboratuvari-damla-lab" target="_blank" class="text-blue-600 hover:underline mx-2">Türkçe Sayfa</a>
+            |
+            <a href="https://fizik-fen.istanbul.edu.tr/en/content/laboratory/data-analysis-and-machine-learning-application-(damla)-laboratory" target="_blank" class="text-blue-600 hover:underline mx-2">English Page</a>
+          </p>
+        </div>
+      </div>
+  
+      <!-- Research Topics Header -->
+      <div class="mt-12">
+        <h3 class="text-3xl font-bold text-gray-800 text-center mb-8">
+          Research Topics
+        </h3>
+        <!-- Research Topics Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Card 1 -->
+          <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300">
+            <h4 class="text-xl font-semibold text-gray-800 mb-2">Data Preprocessing & Big Data Analytics</h4>
+            <p class="text-gray-600">
+              Explore efficient methods for cleaning, transforming, and analyzing massive datasets to extract valuable insights.
+            </p>
+          </div>
+          <!-- Card 2 -->
+          <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300">
+            <h4 class="text-xl font-semibold text-gray-800 mb-2">Machine Learning Models & Algorithms</h4>
+            <p class="text-gray-600">
+              Develop and refine predictive models and algorithms to solve real-world problems using statistical techniques.
+            </p>
+          </div>
+          <!-- Card 3 -->
+          <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300">
+            <h4 class="text-xl font-semibold text-gray-800 mb-2">Deep Learning & Neural Networks</h4>
+            <p class="text-gray-600">
+              Implement state-of-the-art deep learning architectures for image, speech, and text processing applications.
+            </p>
+          </div>
+          <!-- Card 4 -->
+          <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300">
+            <h4 class="text-xl font-semibold text-gray-800 mb-2">Statistical Modeling & Inference</h4>
+            <p class="text-gray-600">
+              Employ rigorous statistical methods to model uncertainty and draw inferences from experimental data.
+            </p>
+          </div>
+          <!-- Card 5 -->
+          <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300">
+            <h4 class="text-xl font-semibold text-gray-800 mb-2">AI Applications in Physics</h4>
+            <p class="text-gray-600">
+              Leverage artificial intelligence to tackle challenges in physics research and experimental data interpretation.
+            </p>
+          </div>
+          <!-- Card 6 -->
+          <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300">
+            <h4 class="text-xl font-semibold text-gray-800 mb-2">Real-Time Data Analysis & Predictive Modeling</h4>
+            <p class="text-gray-600">
+              Design systems for real-time processing and forecasting to support dynamic decision-making processes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+{% endblock %}

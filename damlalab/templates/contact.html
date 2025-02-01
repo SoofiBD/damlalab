@@ -1,0 +1,58 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-16">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h1 class="text-5xl font-bold mb-4">Contact Us</h1>
+    <p class="text-xl">Get in touch with the DAMLA Lab team</p>
+  </div>
+</header>
+
+<!-- Contact Section -->
+<section class="py-12 bg-gray-50">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="space-y-8">
+      <!-- Contact Card for Dr. Öğr. Üyesi Hale Sert -->
+      <div class="bg-white shadow-xl rounded-lg p-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">Dr. Öğr. Üyesi Hale Sert</h2>
+        <ul class="list-disc list-inside text-gray-700">
+          <li>
+            <span class="font-semibold">E-mail:</span>
+            <a href="mailto:hale.sert@istanbul.edu.tr" class="text-blue-600 hover:underline">
+              hale.sert@istanbul.edu.tr
+            </a>
+          </li>
+          <li>
+            <span class="font-semibold">Office Phone:</span> 0212 455 57 00 / 15485
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact Card for Dr. Öğretim Üyesi Çağlar Zorbilmez -->
+      <div class="bg-white shadow-xl rounded-lg p-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">Dr. Öğretim Üyesi Çağlar Zorbilmez</h2>
+        <ul class="list-disc list-inside text-gray-700">
+          <li>
+            <span class="font-semibold">E-mail:</span>
+            <a href="mailto:czorbilmez@istanbul.edu.tr" class="text-blue-600 hover:underline">
+              czorbilmez@istanbul.edu.tr
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact Card for Lab -->
+      <div class="bg-white shadow-xl rounded-lg p-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">Lab</h2>
+        <ul class="list-disc list-inside text-gray-700">
+          <li>
+            <span class="font-semibold">Phone:</span> 0212 455 57 00 / 15256
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

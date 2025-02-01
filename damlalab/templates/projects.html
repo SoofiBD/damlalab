@@ -1,0 +1,123 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="bg-gradient-to-r from-white-500 to-teal-600 text-black py-16">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h1 class="text-5xl font-bold mb-4">Projects</h1>
+    <p class="text-xl">
+      Explore our research and student projects at DAMLA Lab.
+    </p>
+  </div>
+</header>
+
+<!-- Research Projects Section -->
+<section class="py-12 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-gray-800 mb-8">Research Projects</h2>
+    <div class="space-y-8">
+      <!-- TUBİTAK Project Card -->
+      <div class="bg-white shadow-xl rounded-lg p-6">
+        <h3 class="text-2xl font-bold text-gray-800 mb-2">
+          TUBİTAK 2232 – A: International Fellowship for Outstanding Researchers
+        </h3>
+        <p class="text-gray-600 mb-4">
+          Duration: 01.10.2022 – 01.01.2025
+        </p>
+        <div class="mb-4">
+          <p class="text-lg font-semibold text-gray-800">Title:</p>
+          <p class="text-gray-700">
+            Development of a Deep Learning Based Automated Software Tool for Diagnosis of Frontal X-ray Lung Images
+          </p>
+        </div>
+        <div class="mb-4">
+          <p class="text-lg font-semibold text-gray-800">Coordinator:</p>
+          <p class="text-gray-700">Dr. Öğr. Üyesi Hale Sert</p>
+        </div>
+        <div class="mb-4">
+          <p class="text-lg font-semibold text-gray-800">Researchers:</p>
+          <p class="text-gray-700">
+            Prof. Dr. Suat Özkorucuklu, Prof. Dr. Bora Işıldak, Prof. Dr. Atadan Tunacı, Prof. Dr. Mustafa Erelel, Dr. Öğr. Üyesi Güray Gürkan, Öğr. Gör. Dr. Doğu Vurallı Bakkaloğlu
+          </p>
+        </div>
+        <div>
+          <p class="text-lg font-semibold text-gray-800">Scholars:</p>
+          <ul class="list-disc list-inside text-gray-700">
+            <li>Osman Bayraktar: 11/09/2023 - …</li>
+            <li>Dr. Başak Ekinci: 06/12/2022 - 23/07/2024</li>
+            <li>Şafak Yasun: 01/10/2022 - 01/03/2024</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- TENMAK Project Card -->
+      <div class="bg-white shadow-xl rounded-lg p-6">
+        <h3 class="text-2xl font-bold text-gray-800 mb-2">
+          TENMAK: CMS Dedektöründe Kuantum Renk Dinamiği Üzerine Fizik Analizleri, Hassas Proton Spektrometresi (PPS), Hadronik Kalorimetre (HCAL) ve Yüksel Çözünürlüklü Kalorimetre (HGCAL) Alt Dedektörlerinde Güncelleme/AR-GE Çalışmaları
+        </h3>
+        <p class="text-gray-600 mb-4">
+          Duration: 01.01.2025 - 01.01.2028
+        </p>
+        <div class="mb-4">
+          <p class="text-lg font-semibold text-gray-800">Coordinator:</p>
+          <p class="text-gray-700">Prof. Dr. Suat Özkorucuklu</p>
+        </div>
+        <div>
+          <p class="text-lg font-semibold text-gray-800">Researchers:</p>
+          <p class="text-gray-700">
+            Dr. Öğr. Üyesi Çağlar Zorbilmez, Dr. Öğretim Üyesi Hale Sert, Osman Bayraktar et. al.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Student Projects Section -->
+<section class="py-12 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-gray-800 mb-8">Student Projects</h2>
+    <div class="space-y-8">
+      <!-- Student Project Card 1 -->
+      <div class="bg-gray-50 shadow-xl rounded-lg p-6">
+        <h3 class="text-2xl font-bold text-gray-800 mb-2">
+          TUBITAK 2209 A: Research Project Support Programme for Undergraduate Students
+        </h3>
+        <div class="mb-4">
+          <p class="text-lg font-semibold text-gray-800">Student:</p>
+          <p class="text-gray-700">Ayşe Balkan</p>
+        </div>
+        <div class="mb-4">
+          <p class="text-lg font-semibold text-gray-800">Title:</p>
+          <p class="text-gray-700">
+            Labelling the Higgs Boson Production Mechanisms in Certain Decay Process by using Deep Learning Method
+          </p>
+        </div>
+        <div>
+          <p class="text-lg font-semibold text-gray-800">Duration:</p>
+          <p class="text-gray-700">16/11/2022 - 17/11/2024</p>
+        </div>
+      </div>
+
+      <!-- Student Project Card 2 -->
+      <div class="bg-gray-50 shadow-xl rounded-lg p-6">
+        <div class="mb-4">
+          <p class="text-lg font-semibold text-gray-800">Students:</p>
+          <p class="text-gray-700">Emirhan Akkuş, Yağız Arda</p>
+        </div>
+        <div class="mb-4">
+          <p class="text-lg font-semibold text-gray-800">Title:</p>
+          <p class="text-gray-700">
+            Derin öğrenme metodu ile jet çeşitlerinin ayrımı için bir algoritma geliştirmek
+          </p>
+        </div>
+        <div>
+          <p class="text-lg font-semibold text-gray-800">Duration:</p>
+          <p class="text-gray-700">22/03/2024 – 22/03/2025</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

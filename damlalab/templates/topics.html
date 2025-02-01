@@ -1,0 +1,81 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+{% block content %}
+<!-- Hero Section -->
+<header class="bg-gradient-to-r from-white-500 to-indigo-600 text-black py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-5xl font-bold mb-4">Research Topics at DAMLA Lab</h1>
+      <p class="text-xl">
+        Discover our innovative research areas where data analysis and machine learning drive groundbreaking solutions.
+      </p>
+    </div>
+  </header>
+  
+  <!-- Research Topics Cards Section -->
+  <section class="py-12 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Card 1: Data Preprocessing & Big Data Analytics -->
+        <div class="bg-white shadow-xl rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+          <div class="p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Data Preprocessing &amp; Big Data Analytics</h2>
+            <p class="text-gray-600 mb-4">
+              Explore efficient methods for cleaning, transforming, and analyzing massive datasets to extract valuable insights.
+            </p>
+            <a href="#" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-200">Learn More</a>
+          </div>
+        </div>
+        <!-- Card 2: Machine Learning Models & Algorithms -->
+        <div class="bg-white shadow-xl rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+          <div class="p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Machine Learning Models &amp; Algorithms</h2>
+            <p class="text-gray-600 mb-4">
+              Develop and refine predictive models and algorithms that harness the power of machine learning to solve complex real-world problems.
+            </p>
+            <a href="#" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-200">Learn More</a>
+          </div>
+        </div>
+        <!-- Card 3: Deep Learning & Neural Networks -->
+        <div class="bg-white shadow-xl rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+          <div class="p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Deep Learning &amp; Neural Networks</h2>
+            <p class="text-gray-600 mb-4">
+              Implement state-of-the-art deep learning architectures to tackle challenges in image, speech, and text processing.
+            </p>
+            <a href="#" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-200">Learn More</a>
+          </div>
+        </div>
+        <!-- Card 4: Statistical Modeling & Inference -->
+        <div class="bg-white shadow-xl rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+          <div class="p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Statistical Modeling &amp; Inference</h2>
+            <p class="text-gray-600 mb-4">
+              Employ rigorous statistical methods to model uncertainty and draw inferences from experimental data.
+            </p>
+            <a href="#" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-200">Learn More</a>
+          </div>
+        </div>
+        <!-- Card 5: AI Applications in Physics -->
+        <div class="bg-white shadow-xl rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+          <div class="p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">AI Applications in Physics</h2>
+            <p class="text-gray-600 mb-4">
+              Leverage artificial intelligence to tackle challenges in physics research and enhance experimental analysis.
+            </p>
+            <a href="#" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-200">Learn More</a>
+          </div>
+        </div>
+        <!-- Card 6: Real-Time Data Analysis & Predictive Modeling -->
+        <div class="bg-white shadow-xl rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+          <div class="p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Real-Time Data Analysis &amp; Predictive Modeling</h2>
+            <p class="text-gray-600 mb-4">
+              Design innovative systems for real-time data processing and forecasting to empower dynamic decision-making.
+            </p>
+            <a href="#" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-200">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
