@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import research_topic, member, Project, Thesis , Researcher , Scholar, Coordinator
+from .models import research_topic, member, Project, Thesis , Researcher , Scholar, Coordinator, Announcement
 
 @admin.register(Scholar)
 class ScholarAdmin(admin.ModelAdmin):
@@ -46,3 +46,10 @@ class ThesisAdmin(admin.ModelAdmin):
     search_fields = ('title', 'author', 'description')
     list_filter = ('status', 'start_date', 'end_date')
     ordering = ('-date_created',)
+    
+@admin.register(Announcement)
+class AnnouncementAdmin(admin.ModelAdmin):
+    list_display = ('title', 'date')
+    search_fields = ('title', 'content')
+    ordering = ('-date',)
+

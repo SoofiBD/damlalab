@@ -1,8 +1,14 @@
 from django.shortcuts import render
-from .models import member, Project, Thesis, research_topic
+from .models import member, Project, Thesis, research_topic, Announcement
 
 def home(request):
-    return render(request, 'index.html')
+    topics = research_topic.objects.all().order_by('-date')[:6]  
+    announcements = Announcement.objects.all().order_by('-date') 
+    context = {
+        'topics': topics,
+        'announcements': announcements,
+    }
+    return render(request, 'index.html', context)
 
 def research(request):
     topics = research_topic.objects.all().order_by('-date')
