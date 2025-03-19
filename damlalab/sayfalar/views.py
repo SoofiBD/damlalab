@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import member, Project, Thesis, research_topic, Announcement
+from .models import member, Project, Thesis, research_topic, Announcement, Slideshow
 
 def home(request):
     topics = research_topic.objects.all().order_by('-date')[:6]  
@@ -51,3 +51,7 @@ def theses(request):
 
 def contact(request):
     return render(request, 'contact.html')
+
+def index(request):
+    slides = Slideshow.objects.all()
+    return render(request, 'index.html', {'slides': slides})

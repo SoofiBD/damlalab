@@ -2,6 +2,41 @@
 {% load static %}
 
 {% block content %}
+<div id="mainCarousel" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    {% for slide in slides %}
+    <li data-target="#mainCarousel" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
+    {% endfor %}
+  </ol>
+  <div class="carousel-inner">
+    {% for slide in slides %}
+    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+      <img src="{{ slide.image.url }}" class="d-block w-100" alt="{{ slide.title }}">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{ slide.title }}</h5>
+        <p>{{ slide.description }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <a class="carousel-control-prev" href="#mainCarousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#mainCarousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<!-- Debug Information -->
+<h2>Debug Information</h2>
+<ul>
+  {% for slide in slides %}
+  <li>{{ slide.title }} - {{ slide.image.url }}</li>
+  {% endfor %}
+</ul>
+
 <header class="bg-gradient-to-r from-white-500 to-teal-600 text-black py-16">
   <div class="max-w-4xl mx-auto px-4 text-center">
     <h1 class="text-5xl font-bold mb-4">Welcome to DAMLA Lab</h1>
@@ -57,17 +92,29 @@
 <section class="py-12 bg-gray-100">
   <div class="max-w-6xl mx-auto px-4">
     <h3 class="text-3xl font-bold text-gray-800 text-center mb-8">Announcements</h3>
-    <div id="announcement-slider" class="relative h-48 overflow-hidden">
-      {% for announcement in announcements %}
-      <div class="announcement-card bg-white shadow-lg rounded-lg p-6 absolute inset-0 transition-opacity duration-500 {% if forloop.first %}opacity-100{% else %}opacity-0{% endif %}" data-index="{{ forloop.counter0 }}">
-        <h4 class="text-xl font-semibold text-gray-800 mb-2">{{ announcement.title }}</h4>
-        <p class="text-gray-500 text-sm mb-2">{{ announcement.date }}</p>
-        <p class="text-gray-700 mb-2">{{ announcement.short_info }}</p>
-        {% if announcement.link %}
-        <a href="{{ announcement.link }}" target="_blank" class="text-blue-600 hover:underline">Read more</a>
-        {% endif %}
+    <div id="announcementCarousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        {% for announcement in announcements %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <div class="announcement-card bg-white shadow-lg rounded-lg p-6">
+            <h4 class="text-xl font-semibold text-gray-800 mb-2">{{ announcement.title }}</h4>
+            <p class="text-gray-500 text-sm mb-2">{{ announcement.date }}</p>
+            <p class="text-gray-700 mb-2">{{ announcement.short_info }}</p>
+            {% if announcement.link %}
+            <a href="{{ announcement.link }}" target="_blank" class="text-blue-600 hover:underline">Read more</a>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
       </div>
-      {% endfor %}
+      <a class="carousel-control-prev" href="#announcementCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#announcementCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
   </div>
 </section>
