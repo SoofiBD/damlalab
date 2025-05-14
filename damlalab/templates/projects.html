@@ -1,14 +1,14 @@
 {% extends 'partials/_base.html' %}
 {% load static %}
 
+{% block title %}Projects – DAMLA Lab{% endblock %}
+
 {% block content %}
 <!-- Hero Section -->
-<header class="bg-gradient-to-r from-white-500 to-teal-600 text-black py-16">
-  <div class="max-w-4xl mx-auto px-4 text-center">
+<header class="bg-gradient-to-r from-white to-teal-600 text-black py-16 text-center">
+  <div class="max-w-4xl mx-auto px-4">
     <h1 class="text-5xl font-bold mb-4">Projects</h1>
-    <p class="text-xl">
-      Explore our research and student projects at DAMLA Lab.
-    </p>
+    <p class="text-xl">Explore our research and student projects at DAMLA Lab.</p>
   </div>
 </header>
 
@@ -18,62 +18,82 @@
     <h2 class="text-3xl font-bold text-gray-800 mb-8">Research Projects</h2>
     <div class="space-y-8">
       {% for project in research_projects %}
-      <div class="bg-white shadow-xl rounded-lg p-6">
-        <!-- Project Title -->
-        <h3 class="text-2xl font-bold text-gray-800 mb-2">{{ project.title }}</h3>
-        <!-- Duration -->
-        <p class="text-gray-600 mb-4">
-          Duration: {{ project.start_date }} – {{ project.end_date }}
-        </p>
-        <!-- Detailed Title / Description -->
-        {% if project.description %}
-        <div class="mb-4">
-          <p class="text-lg font-semibold text-gray-800">Title:</p>
-          <p class="text-gray-700">{{ project.description }}</p>
+      <article class="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 flex flex-col md:flex-row">
+        
+        {% if project.image %}
+        <div class="md:w-1/3 h-56 md:h-auto relative">
+          <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
         </div>
         {% endif %}
-        <!-- Coordinator(s) -->
-        <div class="mb-4">
-          <p class="text-lg font-semibold text-gray-800">Coordinator:</p>
-          <p class="text-gray-700">
-            {% for coordinator in project.coordinators.all %}
-              {{ coordinator.name }}{% if not forloop.last %}, {% endif %}
-            {% empty %}
-              N/A
-            {% endfor %}
-          </p>
+        
+        <div class="w-full p-6 flex flex-col justify-between">
+          <header>
+            <h3 class="text-2xl font-semibold text-gray-800 mb-2 group-hover:text-teal-600 transition-colors">
+              {{ project.title }}
+            </h3>
+            <p class="text-sm text-gray-500 mb-4">
+              <strong>Duration:</strong>
+              {{ project.start_date }} &ndash; {% if project.end_date %}{{ project.end_date }}{% else %}Present{% endif %}
+            </p>
+          </header>
+
+          <div class="text-gray-700 mb-6">
+            <h4 class="font-medium mb-1">Description</h4>
+            <p>
+              {{ project.description|truncatewords:50 }}
+              {% if project.description|length > 200 %}…{% endif %}
+            </p>
+          </div>
+
+          <!-- Participants Badges -->
+          <div class="space-y-3 mb-6">
+            {% if project.coordinators.all %}
+            <div class="flex items-center space-x-2">
+              <svg class="h-5 w-5 text-purple-600" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a4 4 0 100 8 4 4 0 000-8zM2 18a8 8 0 0116 0H2z"/></svg>
+              <span class="font-medium">Coordinators:</span>
+              {% for coord in project.coordinators.all %}
+              <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded">{{ coord.name }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+            {% if project.researchers.all %}
+            <div class="flex items-center space-x-2">
+              <svg class="h-5 w-5 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a4 4 0 100 8 4 4 0 000-8zM2 18a8 8 0 0116 0H2z"/></svg>
+              <span class="font-medium">Researchers:</span>
+              {% for res in project.researchers.all %}
+              <span class="bg-green-100 text-green-800 px-2 py-1 rounded">{{ res.name }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+            {% if project.scholars.all %}
+            <div class="flex items-center space-x-2">
+              <svg class="h-5 w-5 text-orange-600" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a4 4 0 100 8 4 4 0 000-8zM2 18a8 8 0 0116 0H2z"/></svg>
+              <span class="font-medium">Scholars:</span>
+              {% for sch in project.scholars.all %}
+              <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded">{{ sch.name }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+
+          <!-- Actions -->
+          <footer class="mt-auto flex flex-wrap gap-3">
+            {% if project.url %}
+            <a href="{{ project.url }}" target="_blank"
+               class="flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+              External Link
+            </a>
+            {% endif %}
+            {% if project.slug %}
+            <a href="{% url 'project_detail' project.slug %}"
+               class="ml-auto flex items-center bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900 transition">
+              Detaylı İncele →
+            </a>
+            {% endif %}
+          </footer>
         </div>
-        <!-- Researcher(s) -->
-        <div class="mb-4">
-          <p class="text-lg font-semibold text-gray-800">Researchers:</p>
-          <p class="text-gray-700">
-            {% for researcher in project.researchers.all %}
-              {{ researcher.name }}{% if not forloop.last %}, {% endif %}
-            {% empty %}
-              N/A
-            {% endfor %}
-          </p>
-        </div>
-        <!-- Scholar(s) -->
-        <div>
-          <p class="text-lg font-semibold text-gray-800">Scholars:</p>
-          <ul class="list-disc list-inside text-gray-700">
-            {% for scholar in project.scholars.all %}
-              <li>{{ scholar.name }}</li>
-            {% empty %}
-              <li>N/A</li>
-            {% endfor %}
-          </ul>
-        </div>
-        <!-- "Learn More" Button if URL provided -->
-        {% if project.url %}
-        <div class="mt-4">
-          <a href="{{ project.url }}" target="_blank" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-200">
-            Learn More
-          </a>
-        </div>
-        {% endif %}
-      </div>
+      </article>
       {% empty %}
       <p class="text-center text-gray-600">No research projects available at this time.</p>
       {% endfor %}
@@ -87,33 +107,58 @@
     <h2 class="text-3xl font-bold text-gray-800 mb-8">Student Projects</h2>
     <div class="space-y-8">
       {% for project in student_projects %}
-      <div class="bg-gray-50 shadow-xl rounded-lg p-6">
-        <!-- Project Title -->
-        <h3 class="text-2xl font-bold text-gray-800 mb-2">{{ project.title }}</h3>
-        <!-- Students (assuming student projects use the scholars relationship) -->
-        <div class="mb-4">
-          <p class="text-lg font-semibold text-gray-800">Students:</p>
-          <p class="text-gray-700">
-            {% for student in project.scholars.all %}
-              {{ student.name }}{% if not forloop.last %}, {% endif %}
-            {% empty %}
-              N/A
-            {% endfor %}
-          </p>
-        </div>
-        <!-- Detailed Title / Description -->
-        {% if project.description %}
-        <div class="mb-4">
-          <p class="text-lg font-semibold text-gray-800">Title:</p>
-          <p class="text-gray-700">{{ project.description }}</p>
+      <article class="group bg-gray-50 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 flex flex-col md:flex-row">
+        
+        {% if project.image %}
+        <div class="md:w-1/3 h-56 md:h-auto relative">
+          <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
         </div>
         {% endif %}
-        <!-- Duration -->
-        <div>
-          <p class="text-lg font-semibold text-gray-800">Duration:</p>
-          <p class="text-gray-700">{{ project.start_date }} – {{ project.end_date }}</p>
+        
+        <div class="w-full p-6 flex flex-col justify-between">
+          <header>
+            <h3 class="text-2xl font-semibold text-gray-800 mb-2 group-hover:text-teal-600 transition-colors">
+              {{ project.title }}
+            </h3>
+            <p class="text-sm text-gray-500 mb-4">
+              <strong>Duration:</strong> {{ project.start_date }} – {% if project.end_date %}{{ project.end_date }}{% else %}Present{% endif %}
+            </p>
+          </header>
+
+          <div class="text-gray-700 mb-6">
+            <h4 class="font-medium mb-1">Description</h4>
+            <p>
+              {{ project.description|truncatewords:50 }}
+              {% if project.description|length > 200 %}…{% endif %}
+            </p>
+          </div>
+
+          <!-- Student Badges -->
+          {% if project.scholars.all %}
+          <div class="flex items-center space-x-2 mb-6">
+            <svg class="h-5 w-5 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a4 4 0 100 8 4 4 0 000-8zM2 18a8 8 0 0116 0H2z"/></svg>
+            <span class="font-medium">Students:</span>
+            {% for sch in project.scholars.all %}
+            <span class="bg-green-100 text-green-800 px-2 py-1 rounded">{{ sch.name }}</span>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <footer class="mt-auto flex flex-wrap gap-3">
+            {% if project.url %}
+            <a href="{{ project.url }}" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+              External Link
+            </a>
+            {% endif %}
+            {% if project.slug %}
+            <a href="{% url 'projectS_detail' project.slug %}" class="ml-auto bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900 transition">
+              Detaylı İncele →
+            </a>
+            {% endif %}
+          </footer>
         </div>
-      </div>
+      </article>
       {% empty %}
       <p class="text-center text-gray-600">No student projects available at this time.</p>
       {% endfor %}

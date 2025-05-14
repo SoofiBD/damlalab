@@ -1,0 +1,101 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block title %}{{ thesis.title }} – DAMLA Lab{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="bg-gradient-to-r from-white to-blue-600 text-black py-16 text-center">
+  <div class="max-w-4xl mx-auto px-4">
+    <h1 class="text-5xl font-bold mb-4">{{ thesis.title }}</h1>
+    <p class="text-lg">{{ thesis.get_status_display }} · 
+      {{ thesis.start_date }} – {% if thesis.end_date %}{{ thesis.end_date }}{% else %}Present{% endif %}
+    </p>
+  </div>
+</header>
+
+<!-- Detail Section -->
+<section class="py-12 bg-white">
+  <div class="max-w-4xl mx-auto px-4 space-y-8">
+
+    <!-- Cover Image -->
+    {% if thesis.image %}
+    <div>
+      <img src="{{ thesis.image.url }}" alt="{{ thesis.title }}" class="w-full h-96 object-cover rounded-lg shadow-lg">
+    </div>
+    {% endif %}
+
+    <!-- Abstract -->
+    {% if thesis.abstract %}
+    <div class="prose max-w-none">
+      <h2 class="text-2xl font-semibold mb-2">Abstract</h2>
+      <p>{{ thesis.abstract }}</p>
+    </div>
+    {% endif %}
+
+    <!-- Participants -->
+    <div>
+      <h2 class="text-2xl font-semibold mb-4">Participants</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <h3 class="font-medium">Students</h3>
+          <ul class="list-disc list-inside text-gray-700">
+            {% if students %}
+              {% for s in students %}
+              <li>{{ s.name }}</li>
+              {% endfor %}
+            {% else %}
+              <li>—</li>
+            {% endif %}
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-medium">Supervisors</h3>
+          <ul class="list-disc list-inside text-gray-700">
+            {% if supervisors %}
+              {% for s in supervisors %}
+              <li>{{ s.name }}</li>
+              {% endfor %}
+            {% else %}
+              <li>—</li>
+            {% endif %}
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-medium">Principal Investigator</h3>
+          <ul class="list-disc list-inside text-gray-700">
+            {% if pis %}
+              {% for p in pis %}
+              <li>{{ p.name }}</li>
+              {% endfor %}
+            {% else %}
+              <li>—</li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Files & Links -->
+    <div class="flex flex-wrap gap-4">
+      {% if thesis.pdf %}
+      <a href="{{ thesis.pdf.url }}" download
+         class="bg-green-600 text-white px-5 py-3 rounded-lg shadow hover:bg-green-700">
+        Download Full Thesis (PDF)
+      </a>
+      {% endif %}
+      {% if thesis.link %}
+      <a href="{{ thesis.link }}" target="_blank"
+         class="bg-blue-600 text-white px-5 py-3 rounded-lg shadow hover:bg-blue-700">
+        View External Link
+      </a>
+      {% endif %}
+      <a href="{% url 'theses' %}"
+         class="ml-auto bg-gray-800 text-white px-5 py-3 rounded-lg shadow hover:bg-gray-900">
+        Back to Theses
+      </a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

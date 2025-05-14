@@ -1,0 +1,97 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block title %}{{ project.title }} – DAMLA Lab{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="bg-gradient-to-r from-white to-teal-600 text-black py-16 text-center">
+  <div class="max-w-4xl mx-auto px-4">
+    <h1 class="text-5xl font-bold mb-4">{{ project.title }}</h1>
+    <p class="text-lg">
+      {{ project.get_project_type_display }} ·
+      {{ project.start_date }} – {% if project.end_date %}{{ project.end_date }}{% else %}Present{% endif %}
+    </p>
+  </div>
+</header>
+
+<!-- Detail Section -->
+<section class="py-12 bg-white">
+  <div class="max-w-4xl mx-auto px-4 space-y-8">
+
+    <!-- Cover Image -->
+    {% if project.image %}
+    <div>
+      <img src="{{ project.image.url }}" alt="{{ project.title }}"
+           class="w-full h-96 object-cover rounded-lg shadow-lg">
+    </div>
+    {% endif %}
+
+    <!-- Description -->
+    {% if project.description %}
+    <div class="prose max-w-none">
+      <h2 class="text-2xl font-semibold mb-2">Description</h2>
+      <p>{{ project.description }}</p>
+    </div>
+    {% endif %}
+
+    <!-- Participants -->
+    <div>
+      <h2 class="text-2xl font-semibold mb-4">Participants</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <h3 class="font-medium">Students</h3>
+          <ul class="list-disc list-inside text-gray-700">
+            {% if students %}
+              {% for p in students %}
+              <li>{{ p.name }}</li>
+              {% endfor %}
+            {% else %}
+              <li>—</li>
+            {% endif %}
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-medium">Supervisors</h3>
+          <ul class="list-disc list-inside text-gray-700">
+            {% if supervisors %}
+              {% for p in supervisors %}
+              <li>{{ p.name }}</li>
+              {% endfor %}
+            {% else %}
+              <li>—</li>
+            {% endif %}
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-medium">Principal Investigator</h3>
+          <ul class="list-disc list-inside text-gray-700">
+            {% if pis %}
+              {% for p in pis %}
+              <li>{{ p.name }}</li>
+              {% endfor %}
+            {% else %}
+              <li>—</li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Links -->
+    <div class="flex flex-wrap gap-4">
+      {% if project.link %}
+      <a href="{{ project.link }}" target="_blank"
+         class="bg-blue-600 text-white px-5 py-3 rounded-lg shadow hover:bg-blue-700 transition">
+        View External Link
+      </a>
+      {% endif %}
+      <a href="{% url 'projects' %}"
+         class="ml-auto bg-gray-800 text-white px-5 py-3 rounded-lg shadow hover:bg-gray-900 transition">
+        Back to Projects
+      </a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

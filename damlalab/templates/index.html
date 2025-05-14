@@ -1,91 +1,138 @@
 {% extends 'partials/_base.html' %}
 {% load static %}
 
+{% block title %}Home – DAMLA Lab{% endblock %}
+
 {% block content %}
-<header class="bg-gradient-to-r from-white-500 to-teal-600 text-black py-16">
-  <div class="max-w-4xl mx-auto px-4 text-center">
-    <h1 class="text-5xl font-bold mb-4">Welcome to DAMLA Lab</h1>
-    <p class="text-xl">
-      Pioneering research in data analysis and machine learning applications.
-    </p>
-  </div>
-</header>
+  <!-- Başlık -->
+  <header class="bg-gradient-to-r from-white to-teal-600 text-black py-16 text-center">
+    <div class="max-w-4xl mx-auto px-4">
+      <h1 class="text-5xl font-bold mb-4">Welcome to DAMLA Lab</h1>
+      <p class="text-xl">Pioneering research in data analysis and machine learning applications.</p>
+    </div>
+  </header>
 
-<section class="py-12 bg-gradient-to-r from-blue-50 to-white">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="bg-white shadow-2xl rounded-lg overflow-hidden">
-      <div class="p-8">
-        <h2 class="text-4xl font-bold text-gray-800 text-center mb-4">DAMLA Lab</h2>
-        <p class="text-center text-lg text-gray-600 mb-6">
-          <em>(Data Analysis and Machine Learning Application Research Laboratory)</em>
-        </p>
-        <p class="text-gray-700 leading-relaxed text-justify mb-6">
-          DAMLA Lab, part of the Faculty of Physics at Istanbul University, is dedicated to advancing research in data analysis and machine learning. We harness cutting-edge techniques in statistical analysis, deep learning, and artificial intelligence to transform complex data into actionable insights.
-        </p>
-        <p class="text-center">
-          <a href="https://fizik-fen.istanbul.edu.tr/tr/content/arastirma/veri-analizi-ve-makin-ogrenmesi-uygulamalari-laboratuvari-damla-lab" target="_blank" class="text-blue-600 hover:underline mx-2">Türkçe Sayfa</a>
-          |
-          <a href="https://fizik-fen.istanbul.edu.tr/en/content/laboratory/data-analysis-and-machine-learning-application-(damla)-laboratory" target="_blank" class="text-blue-600 hover:underline mx-2">English Page</a>
-        </p>
+  <!-- Duyuru Slider -->
+  <section class="py-12 bg-gray-100">
+    <div class="max-w-6xl mx-auto px-4">
+      <h3 class="text-3xl font-bold text-gray-800 text-center mb-8">Announcements</h3>
+
+      <div id="announcement-slider" class="relative overflow-hidden rounded-lg h-80">
+        <div class="relative h-full">
+          {% for ann in announcements %}
+            <div class="announcement-card absolute inset-0 transition-opacity duration-700 ease-in-out {% if forloop.first %}opacity-100{% else %}opacity-0{% endif %}">
+              <div class="flex h-full bg-white rounded-lg overflow-hidden shadow-lg">
+                
+                <!-- SOL: Resim + Gradient -->
+                <div class="w-1/2 relative">
+                  {% if ann.image %}
+                    <img src="{{ ann.image.url }}" alt="{{ ann.title }}" class="w-full h-full object-cover">
+                  {% else %}
+                    <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                      <span class="text-gray-500">No Image</span>
+                    </div>
+                  {% endif %}
+                  <div class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-gray-100 to-transparent"></div>
+                </div>
+
+                <!-- SAĞ: Metin + Buton -->
+                <div class="w-1/2 p-6 flex flex-col justify-between">
+                  <div>
+                    <h4 class="text-2xl font-semibold text-gray-800 mb-2">{{ ann.title }}</h4>
+                    <p class="text-gray-500 text-sm mb-4">{{ ann.date }}</p>
+                    <!-- burada 20 kelimeyle sınırladık -->
+                    <p class="text-gray-700 mb-4">
+                      {{ ann.short_info|truncatewords:20 }}
+                    </p>
+                  </div>
+                  {% if ann.link %}
+                    <a href="{{ ann.link }}" target="_blank"
+                      class="self-end bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                      Detaylı Bilgi
+                    </a>
+                  {% endif %}
+                </div>
+
+              </div>
+            </div>
+          {% empty %}
+            <p class="text-center text-gray-600">No announcements at this time.</p>
+          {% endfor %}
+        </div>
+
+        {% if announcements|length > 1 %}
+          <button id="prev-btn" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 p-2 rounded-full z-20">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button id="next-btn" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 p-2 rounded-full z-20">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+        {% endif %}
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="py-12 bg-gray-50">
-  <div class="max-w-6xl mx-auto px-4">
-    <h3 class="text-3xl font-bold text-gray-800 text-center mb-8">Our Research Topics</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+  <!-- Araştırma Konuları -->
+  <section class="py-12 bg-gradient-to-r from-blue-50 to-white">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {% for topic in topics %}
-      <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300">
-        <h4 class="text-xl font-semibold text-gray-800 mb-2">{{ topic.topic }}</h4>
-        <p class="text-gray-600 mb-4">{{ topic.description }}</p>
-        {% if topic.image %}
-        <img src="{{ topic.image.url }}" alt="{{ topic.topic }}" class="mt-4 w-full h-auto rounded">
-        {% endif %}
-        <a href="{% url 'research' %}" class="inline-block mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-200">
-          Learn More
-        </a>
-      </div>
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition">
+          {% if topic.image %}
+            <img src="{{ topic.image.url }}" alt="{{ topic.topic }}" class="w-full h-48 object-cover">
+          {% endif %}
+          <div class="p-6">
+            <h4 class="text-xl font-semibold mb-2">{{ topic.topic }}</h4>
+            <p class="text-gray-600 mb-4">{{ topic.description }}</p>
+            <a href="{% url 'research' %}"
+               class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+              Learn More
+            </a>
+          </div>
+        </div>
       {% empty %}
-      <p class="text-center text-gray-600">No research topics available at this time.</p>
+        <p class="col-span-full text-center text-gray-600">No research topics available.</p>
       {% endfor %}
     </div>
-  </div>
-</section>
-
-<section class="py-12 bg-gray-100">
-  <div class="max-w-6xl mx-auto px-4">
-    <h3 class="text-3xl font-bold text-gray-800 text-center mb-8">Announcements</h3>
-    <div id="announcement-slider" class="relative h-48 overflow-hidden">
-      {% for announcement in announcements %}
-      <div class="announcement-card bg-white shadow-lg rounded-lg p-6 absolute inset-0 transition-opacity duration-500 {% if forloop.first %}opacity-100{% else %}opacity-0{% endif %}" data-index="{{ forloop.counter0 }}">
-        <h4 class="text-xl font-semibold text-gray-800 mb-2">{{ announcement.title }}</h4>
-        <p class="text-gray-500 text-sm mb-2">{{ announcement.date }}</p>
-        <p class="text-gray-700 mb-2">{{ announcement.short_info }}</p>
-        {% if announcement.link %}
-        <a href="{{ announcement.link }}" target="_blank" class="text-blue-600 hover:underline">Read more</a>
-        {% endif %}
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-</section>
+  </section>
 {% endblock %}
 
 {% block extra_scripts %}
 <script>
-document.addEventListener('DOMContentLoaded', function(){
-  const cards = document.querySelectorAll('#announcement-slider .announcement-card');
-  let currentIndex = 0;
-  const total = cards.length;
-  setInterval(() => {
-    cards[currentIndex].classList.remove('opacity-100');
-    cards[currentIndex].classList.add('opacity-0');
-    currentIndex = (currentIndex + 1) % total;
-    cards[currentIndex].classList.remove('opacity-0');
-    cards[currentIndex].classList.add('opacity-100');
-  }, 5000);
-});
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = Array.from(document.querySelectorAll('#announcement-slider .announcement-card'));
+    let current = 0;
+    const total = cards.length;
+    if (total < 1) return;
+
+    function showSlide(idx) {
+      cards.forEach((c, i) => {
+        c.classList.toggle('opacity-100', i === idx);
+        c.classList.toggle('opacity-0',    i !== idx);
+      });
+    }
+
+    // Otomatik kaydırma
+    let interval = setInterval(() => {
+      current = (current + 1) % total;
+      showSlide(current);
+    }, 5000);
+
+    // Prev/Next kontrolleri
+    const prev = document.getElementById('prev-btn');
+    const next = document.getElementById('next-btn');
+    if (prev && next) {
+      prev.addEventListener('click', () => {
+        clearInterval(interval);
+        current = (current - 1 + total) % total;
+        showSlide(current);
+      });
+      next.addEventListener('click', () => {
+        clearInterval(interval);
+        current = (current + 1) % total;
+        showSlide(current);
+      });
+    }
+  });
 </script>
 {% endblock %}

@@ -1,26 +1,152 @@
 {% extends 'partials/_base.html' %}
 {% load static %}
 
+{% block title %}Open Positions – DAMLA Lab{% endblock %}
+
 {% block content %}
 <!-- Hero Section -->
-<header class="bg-gradient-to-r from-white-500 to-indigo-600 text-black py-16">
-  <div class="max-w-4xl mx-auto px-4 text-center">
+<header class="bg-gradient-to-r from-indigo-600 to-teal-400 text-white py-16 text-center">
+  <div class="max-w-4xl mx-auto px-4">
     <h1 class="text-5xl font-bold mb-4">Open Positions</h1>
     <p class="text-xl">Join Our Team at DAMLA Lab</p>
   </div>
 </header>
 
-<!-- Open Positions Content -->
 <section class="py-12 bg-gray-50">
-  <div class="max-w-3xl mx-auto px-4">
-    <div class="bg-white shadow-xl rounded-lg p-6">
-      <p class="text-gray-700 text-lg mb-6">
-        Students with an interest in particle physics, data analysis, machine learning, and simulation are invited to join our group for undergraduate or graduate studies.
-      </p>
-      <p class="text-gray-700 text-lg">
-        To participate in our group projects, you must have strong programming skills.
-      </p>
+  <div class="max-w-4xl mx-auto px-4 space-y-16">
+
+    <!-- Undergraduate Positions -->
+    <div>
+      <h2 class="text-3xl font-bold text-gray-800 mb-6">Undergraduate Positions</h2>
+      <div class="space-y-8">
+        {% for pos in positions %}
+          {% if pos.position_type == 'UG' %}
+          <article class="bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow p-8 flex flex-col md:flex-row items-start">
+            <div class="md:flex-shrink-0 mb-6 md:mb-0 md:mr-8">
+              <img src="{% static 'images/undergraduate.svg' %}" alt="Undergraduate" class="h-20 w-20">
+            </div>
+            <div class="flex-1">
+              <h3 class="text-2xl font-semibold text-gray-800 mb-2">{{ pos.title }}</h3>
+              <div class="text-gray-700 mb-4">
+                <h4 class="font-medium">Description</h4>
+                <p>{{ pos.description|linebreaksbr }}</p>
+              </div>
+              {% if pos.eligibility %}
+              <div class="text-gray-700 mb-4">
+                <h4 class="font-medium">Eligibility</h4>
+                <p>{{ pos.eligibility|linebreaksbr }}</p>
+              </div>
+              {% endif %}
+              {% if pos.skills %}
+              <div class="text-gray-700 mb-4">
+                <h4 class="font-medium">Required Skills</h4>
+                <p>{{ pos.skills|linebreaksbr }}</p>
+              </div>
+              {% endif %}
+              {% if pos.commitment %}
+              <p class="text-gray-700 mb-4"><strong>Commitment:</strong> {{ pos.commitment }}</p>
+              {% endif %}
+              <a href="mailto:{{ pos.contact_email }}?subject={{ pos.title|urlencode }}"
+                 class="inline-block bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition">
+                Apply Now
+              </a>
+            </div>
+          </article>
+          {% endif %}
+        {% empty %}
+        <p class="text-center text-gray-600">No undergraduate positions available.</p>
+        {% endfor %}
+      </div>
     </div>
+
+    <!-- Graduate Positions -->
+    <div>
+      <h2 class="text-3xl font-bold text-gray-800 mb-6">Graduate Positions</h2>
+      <div class="space-y-8">
+        {% for pos in positions %}
+          {% if pos.position_type == 'GR' %}
+          <article class="bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow p-8 flex flex-col md:flex-row items-start">
+            <div class="md:flex-shrink-0 mb-6 md:mb-0 md:mr-8">
+              <img src="{% static 'images/graduate.svg' %}" alt="Graduate" class="h-20 w-20">
+            </div>
+            <div class="flex-1">
+              <h3 class="text-2xl font-semibold text-gray-800 mb-2">{{ pos.title }}</h3>
+              <div class="text-gray-700 mb-4">
+                <h4 class="font-medium">Description</h4>
+                <p>{{ pos.description|linebreaksbr }}</p>
+              </div>
+              {% if pos.eligibility %}
+              <div class="text-gray-700 mb-4">
+                <h4 class="font-medium">Eligibility</h4>
+                <p>{{ pos.eligibility|linebreaksbr }}</p>
+              </div>
+              {% endif %}
+              {% if pos.skills %}
+              <div class="text-gray-700 mb-4">
+                <h4 class="font-medium">Required Skills</h4>
+                <p>{{ pos.skills|linebreaksbr }}</p>
+              </div>
+              {% endif %}
+              {% if pos.commitment %}
+              <p class="text-gray-700 mb-4"><strong>Commitment:</strong> {{ pos.commitment }}</p>
+              {% endif %}
+              <a href="mailto:{{ pos.contact_email }}?subject={{ pos.title|urlencode }}"
+                 class="inline-block bg-teal-500 text-white px-4 py-2 rounded hover:bg-teal-600 transition">
+                Apply Now
+              </a>
+            </div>
+          </article>
+          {% endif %}
+        {% empty %}
+        <p class="text-center text-gray-600">No graduate positions available.</p>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Postdoctoral Positions -->
+    <div>
+      <h2 class="text-3xl font-bold text-gray-800 mb-6">Postdoctoral Positions</h2>
+      <div class="space-y-8">
+        {% for pos in positions %}
+          {% if pos.position_type == 'PD' %}
+          <article class="bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow p-8 flex flex-col md:flex-row items-start">
+            <div class="md:flex-shrink-0 mb-6 md:mb-0 md:mr-8">
+              <img src="{% static 'images/postdoc.svg' %}" alt="Postdoc" class="h-20 w-20">
+            </div>
+            <div class="flex-1">
+              <h3 class="text-2xl font-semibold text-gray-800 mb-2">{{ pos.title }}</h3>
+              <div class="text-gray-700 mb-4">
+                <h4 class="font-medium">Description</h4>
+                <p>{{ pos.description|linebreaksbr }}</p>
+              </div>
+              {% if pos.eligibility %}
+              <div class="text-gray-700 mb-4">
+                <h4 class="font-medium">Eligibility</h4>
+                <p>{{ pos.eligibility|linebreaksbr }}</p>
+              </div>
+              {% endif %}
+              {% if pos.skills %}
+              <div class="text-gray-700 mb-4">
+                <h4 class="font-medium">Required Skills</h4>
+                <p>{{ pos.skills|linebreaksbr }}</p>
+              </div>
+              {% endif %}
+              {% if pos.commitment %}
+              <p class="text-gray-700 mb-4"><strong>Term:</strong> {{ pos.commitment }}</p>
+              {% endif %}
+              <a href="mailto:{{ pos.contact_email }}?subject={{ pos.title|urlencode }}"
+                 class="inline-block bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition">
+                Apply Now
+              </a>
+            </div>
+          </article>
+          {% endif %}
+        {% empty %}
+        <p class="text-center text-gray-600">No postdoctoral positions available.</p>
+        {% endfor %}
+      </div>
+    </div>
+
   </div>
 </section>
 {% endblock %}

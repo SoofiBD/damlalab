@@ -1,90 +1,89 @@
-{% extends 'partials/_base.html' %} {% load static %} {% block content %}
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block title %}Team – DAMLA Lab{% endblock %}
+
+{% block content %}
 <!-- Hero Section -->
-<header class="bg-gradient-to-r from-white-600 to-white-500 text-black py-16">
-  <div class="max-w-4xl mx-auto px-4 text-center">
-    <h1 class="text-5xl font-bold mb-4">Research Group Members</h1>
-    <p class="text-xl">
-      Meet the dedicated team driving innovation at DAMLA Lab
-    </p>
+<header class="bg-gradient-to-r from-white to-teal-600 text-black py-16 text-center">
+  <div class="max-w-4xl mx-auto px-4">
+    <h1 class="text-5xl font-bold mb-4">Our Team</h1>
+    <p class="text-xl">Students, Supervisors, and Principal Investigators at DAMLA Lab</p>
   </div>
 </header>
 
 <section class="py-12 bg-gray-50">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="mb-12">
-      <h2 class="text-3xl font-bold text-gray-800 mb-6">Group Leaders</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {% for leader in group_leaders %}
-        <div
-          class="bg-white shadow-xl rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300"
-        >
-          <h3 class="text-2xl font-semibold text-gray-800">
-            {{ leader.name }}
-          </h3>
-          <p class="text-gray-600 mt-2">{{ leader.get_title_display }}</p>
-          {% if leader.image %}
-          <img
-            src="{{ leader.image.url }}"
-            alt="{{ leader.name }}"
-            class="mt-4 w-full h-auto rounded"
-          />
-          {% endif %}
-        </div>
-        {% empty %}
-        <p class="text-center text-gray-600">No group leaders available.</p>
-        {% endfor %}
-      </div>
-    </div>
+  <div class="max-w-6xl mx-auto px-4 space-y-16">
 
-    <div class="mb-12">
-      <h2 class="text-3xl font-bold text-gray-800 mb-6">Graduate Students</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {% for student in graduate_students %}
-        <div
-          class="bg-white shadow-xl rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300"
-        >
-          <h3 class="text-2xl font-semibold text-gray-800">
-            {{ student.name }}
-          </h3>
-          <p class="text-gray-600 mt-2">{{ student.get_title_display }}</p>
-          {% if student.image %}
-          <img
-            src="{{ student.image.url }}"
-            alt="{{ student.name }}"
-            class="mt-4 w-full h-auto rounded"
-          />
-          {% endif %}
-        </div>
-        {% empty %}
-        <p class="text-center text-gray-600">No graduate students available.</p>
-        {% endfor %}
-      </div>
-    </div>
-
+    <!-- Students -->
     <div>
-      <h2 class="text-3xl font-bold text-gray-800 mb-6">Previous Members</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {% for previous in previous_members %}
-        <div
-          class="bg-white shadow-xl rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300"
-        >
-          <h3 class="text-2xl font-semibold text-gray-800">
-            {{ previous.name }}
-          </h3>
-          <p class="text-gray-600 mt-2">{{ previous.get_title_display }}</p>
-          {% if previous.image %}
-          <img
-            src="{{ previous.image.url }}"
-            alt="{{ previous.name }}"
-            class="mt-4 w-full h-auto rounded"
-          />
+      <h2 class="text-3xl font-bold text-gray-800 mb-6">Students</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        {% for p in students %}
+        <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-2xl transition-shadow">
+          <h3 class="text-xl font-semibold text-gray-800">{{ p.name }}</h3>
+          {% if p.affiliation %}
+          <p class="text-gray-500 mt-1">{{ p.affiliation }}</p>
+          {% endif %}
+          {% if p.email %}
+          <a href="mailto:{{ p.email }}"
+             class="mt-2 inline-block text-blue-600 hover:underline text-sm">
+            {{ p.email }}
+          </a>
           {% endif %}
         </div>
         {% empty %}
-        <p class="text-center text-gray-600">No previous members available.</p>
+        <p class="text-center text-gray-600">No students found.</p>
         {% endfor %}
       </div>
     </div>
+
+    <!-- Supervisors -->
+    <div>
+      <h2 class="text-3xl font-bold text-gray-800 mb-6">Supervisors</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        {% for p in supervisors %}
+        <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-2xl transition-shadow">
+          <h3 class="text-xl font-semibold text-gray-800">{{ p.name }}</h3>
+          {% if p.affiliation %}
+          <p class="text-gray-500 mt-1">{{ p.affiliation }}</p>
+          {% endif %}
+          {% if p.email %}
+          <a href="mailto:{{ p.email }}"
+             class="mt-2 inline-block text-blue-600 hover:underline text-sm">
+            {{ p.email }}
+          </a>
+          {% endif %}
+        </div>
+        {% empty %}
+        <p class="text-center text-gray-600">No supervisors found.</p>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Principal Investigators -->
+    <div>
+      <h2 class="text-3xl font-bold text-gray-800 mb-6">Principal Investigators</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        {% for p in pis %}
+        <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-2xl transition-shadow">
+          <h3 class="text-xl font-semibold text-gray-800">{{ p.name }}</h3>
+          {% if p.affiliation %}
+          <p class="text-gray-500 mt-1">{{ p.affiliation }}</p>
+          {% endif %}
+          {% if p.email %}
+          <a href="mailto:{{ p.email }}"
+             class="mt-2 inline-block text-blue-600 hover:underline text-sm">
+            {{ p.email }}
+          </a>
+          {% endif %}
+        </div>
+        {% empty %}
+        <p class="text-center text-gray-600">No principal investigators found.</p>
+        {% endfor %}
+      </div>
+    </div>
+
   </div>
 </section>
 {% endblock %}
